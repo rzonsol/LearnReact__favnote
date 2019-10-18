@@ -1,4 +1,6 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'theme/mainTheme';
 
 import Button from 'components/atoms/Button/Button';
 import GlobalStyle from 'theme/GlobalStyle';
@@ -6,9 +8,13 @@ import GlobalStyle from 'theme/GlobalStyle';
 const Root = () => (
 	<div>
 		<GlobalStyle />
-		<h1>Favnot</h1>
-		<Button>Close / Save </Button>
-		<Button secondary>Removed</Button>
+		<ThemeProvider theme={theme}>
+			<>
+				<h1>Favnot</h1>
+				<Button>Close / Save </Button>
+				<Button secondary>Removed</Button>
+			</>
+		</ThemeProvider>
 	</div>
 );
 

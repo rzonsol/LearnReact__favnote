@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-	background-color: ${({ color }) => color || '#ffd82b'};
+	background-color: ${({ theme }) => theme.primary};
 	border: none;
 	border-radius: 50px;
 	font-family: 'Montserrat';
@@ -14,7 +14,7 @@ const Button = styled.button`
 	${({ secondary }) =>
 		secondary &&
 		css`
-			background-color: #e6e6e6;
+			background-color: ${({ theme }) => theme.grey200};
 			font-size: 10px;
 			width: 105px;
 		`}
