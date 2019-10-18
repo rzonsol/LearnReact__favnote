@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from 'components/Button/Button';
+import Button from 'components/atoms/Button/Button';
 import GlobalStyle from 'theme/GlobalStyle';
 
 const Root = () => (
