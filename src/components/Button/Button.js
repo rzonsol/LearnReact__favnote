@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-	background-color: #ffd82b;
+	background-color: ${({ color }) => color || '#ffd82b'};
 	border: none;
 	border-radius: 50px;
 	font-family: 'Montserrat';
