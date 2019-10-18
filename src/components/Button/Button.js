@@ -6,7 +6,7 @@ const Button = styled.button`
 	border-radius: 50px;
 	font-family: 'Montserrat';
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 600;
 	height: 48px;
 	text-transform: uppercase;
 	width: ${({ width }) => width || '220px'};
