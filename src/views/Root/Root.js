@@ -1,11 +1,13 @@
 import React from 'react';
 
-function Root() {
-	return (
-		<div className="App">
-			<h1>Favnot</h1>
-		</div>
-	);
-}
+import Button from 'components/Button/Button';
+
+const Root = () => (
+	<div className="App">
+		<h1>Favnot</h1>
+		<Button>Close / Save </Button>
+		<Button secondary>Removed</Button>
+	</div>
+);
 
 export default Root;
