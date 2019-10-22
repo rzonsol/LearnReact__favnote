@@ -1,5 +1,13 @@
 import React from 'react';
 
-const Articles = () => <h1>Articles</h1>;
+import UserPageTemplate from 'templates/UserPageTemplate';
+
+const Articles = () => (
+	<>
+		<UserPageTemplate pageType="article">
+			<h1>Articles</h1>
+		</UserPageTemplate>
+	</>
+);
 
 export default Articles;
