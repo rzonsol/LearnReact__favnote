@@ -13,7 +13,7 @@ import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 
 const StyleWrapper = styled.div`
 	position: fixed;
-	background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.note)};
+	background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.notes)};
 	width: 15.3rem;
 	top: 0;
 	left: 0;
@@ -50,7 +50,7 @@ const Sidebar = ({ pageType }) => (
 	<StyleWrapper activeColor={pageType}>
 		<LogoStyle src={logo} />
 		<LinkWrapperStyle>
-			<ButtonIconCenter exact as={NavLink} to="/" icon={pen} activeclass="active" />
+			<ButtonIconCenter as={NavLink} to="/notes" icon={pen} activeclass="active" />
 			<ButtonIconCenter as={NavLink} to="/twitters" icon={twitter} activeclass="active" />
 			<ButtonIconCenter as={NavLink} to="/articles" icon={bulb} activeclass="active" />
 		</LinkWrapperStyle>
@@ -61,7 +61,7 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-	pageType: PropTypes.oneOf(['note', 'twitter', 'article']),
+	pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 Sidebar.defaultProps = {

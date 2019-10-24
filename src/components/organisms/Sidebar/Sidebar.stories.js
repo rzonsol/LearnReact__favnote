@@ -4,8 +4,12 @@ import StoryRouter from 'storybook-react-router';
 
 import Sidebar from './Sidebar';
 
-const normal = () => <Sidebar />;
+const notes = () => <Sidebar pageType="notes" />;
+const twitters = () => <Sidebar pageType="twitters" />;
+const articles = () => <Sidebar pageType="articles" />;
 
 storiesOf('Organisms/Sidebar', module)
 	.addDecorator(StoryRouter())
-	.add('Normal', normal);
+	.add('Notes', notes)
+	.add('Articles', articles)
+	.add('Twitters', twitters);
