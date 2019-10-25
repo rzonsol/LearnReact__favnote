@@ -3,10 +3,14 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Headings from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
+import { removeItem as removeItemAction } from 'actions';
+import withContext from 'hoc/withContext';
 
 const StyleWrapper = styled.div`
 	box-shadow: 0 1rem 3rem -1rem hsla(0, 0%, 0%, 0.1);
@@ -78,24 +82,26 @@ class Card extends Component {
 	handlerCardClick = () => this.setState({ redirect: true });
 
 	render() {
-		const { articleUrl, cardType, content, created, id, title, twitterName } = this.props;
+		const { articleUrl, pageContext, content, created, id, removeItem, title, twitterName } = this.props;
 
 		const { redirect } = this.state;
 		if (redirect) {
-			return <Redirect to={`${cardType}/${id}`} />;
+			return <Redirect to={`${pageContext}/${id}`} />;
 		}
 
 		return (
 			<StyleWrapper onClick={this.handlerCardClick}>
-				<StyleInnerWrapper activeColor={cardType}>
+				<StyleInnerWrapper activeColor={pageContext}>
 					<StyledHeading>{title}</StyledHeading>
 					<DateInfo>{created}</DateInfo>
-					{cardType === 'twitters' && <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />}
-					{cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
+					{pageContext === 'twitters' && <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />}
+					{pageContext === 'articles' && <StyledLinkButton href={articleUrl} />}
 				</StyleInnerWrapper>
 				<StyleInnerWrapper flex>
 					<Paragraph>{content}</Paragraph>
-					<Button secondary>Remove</Button>
+					<Button secondary onClick={() => removeItem(pageContext, id)}>
+						Remove
+					</Button>
 				</StyleInnerWrapper>
 			</StyleWrapper>
 		);
@@ -103,19 +109,27 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-	cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+	pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 	title: PropTypes.string.isRequired,
 	created: PropTypes.string.isRequired,
 	content: PropTypes.string.isRequired,
-	id: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
 	twitterName: PropTypes.string,
 	articleUrl: PropTypes.string,
+	removeItem: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
-	cardType: 'notes',
+	pageContext: 'notes',
 	twitterName: null,
 	articleUrl: null,
 };
 
-export default Card;
+const mapDispatchToProps = dispatch => ({
+	removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+});
+
+export default connect(
+	null,
+	mapDispatchToProps,
+)(withContext(Card));

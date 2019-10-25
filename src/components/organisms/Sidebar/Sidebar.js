@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import withContext from 'hoc/withContext';
 
 import bulb from 'assets/icons/bulb.svg';
 import logout from 'assets/icons/logout.svg';
@@ -46,8 +47,8 @@ const LogOutStyle = styled.div`
 	align-content: center;
 `;
 
-const Sidebar = ({ pageType }) => (
-	<StyleWrapper activeColor={pageType}>
+const Sidebar = ({ pageContext }) => (
+	<StyleWrapper activeColor={pageContext}>
 		<LogoStyle src={logo} />
 		<LinkWrapperStyle>
 			<ButtonIconCenter as={NavLink} to="/notes" icon={pen} activeclass="active" />
@@ -61,11 +62,11 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-	pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+	pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 Sidebar.defaultProps = {
-	pageType: 'note',
+	pageContext: 'notes',
 };
 
-export default Sidebar;
+export default withContext(Sidebar);
