@@ -1,5 +1,6 @@
 export const routes = {
 	home: '/',
+	login: '/login',
 	twitters: '/twitters',
 	twitter: '/twitters/:id',
 	notes: '/notes',
