@@ -64,8 +64,6 @@ class GridTemplate extends Component {
 	render() {
 		const { children, pageContext } = this.props;
 		const { isNewItemBarVisible } = this.state;
-		console.log(`render: ${isNewItemBarVisible}`);
-
 		return (
 			<UserPageTemplate>
 				<StyledWrapper>
@@ -78,7 +76,7 @@ class GridTemplate extends Component {
 					</StyledPageHeader>
 					<StyleGrid>{children}</StyleGrid>
 					<StyledButtonIcon activeColor={pageContext} icon={plus} onClick={this.handleNewItemBarToggle} />
-					<NewItemBar isVisible={isNewItemBarVisible} />
+					<NewItemBar isVisible={isNewItemBarVisible} newItemBarToggle={this.handleNewItemBarToggle} />
 				</StyledWrapper>
 			</UserPageTemplate>
 		);
